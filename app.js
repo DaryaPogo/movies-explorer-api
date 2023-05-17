@@ -14,7 +14,8 @@ const { DB_ADRESS, PORT } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3000', ['http://diplom.dashapogo.nomoredomains.monster'],
+    ['https://diplom.dashapogo.nomoredomains.monster']],
   credentials: true,
 }));
 
