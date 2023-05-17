@@ -15,7 +15,7 @@ const app = express();
 
 app.use(cors({
   origin: ['http://localhost:3000', 'http://diplom.dashapogo.nomoredomains.monster',
-    ['https://diplom.dashapogo.nomoredomains.monster', 'https://api.dashapogo.mesto.nomoredomains.monster'],
+    'https://diplom.dashapogo.nomoredomains.monster', 'https://api.dashapogo.mesto.nomoredomains.monster'],
   credentials: true,
 }));
 
