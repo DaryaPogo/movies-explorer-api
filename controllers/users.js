@@ -25,10 +25,13 @@ const updateUser = (req, res, next) => {
       res.status(SUCSESS).send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.code === 11000) {
+        next(new RequestError('email занят'));
+      } else if (err.name === 'ValidationError') {
         next(new BadRequestError('Incorrect data'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
@@ -45,7 +48,7 @@ const login = (req, res, next) => {
               res.cookie('jwt', token, { httpOnly: true })
                 .send(user.toJSON());
             } else {
-              next(new InvalidError('Invalid email'));
+              next(new InvalidError('Неверно введен пользователь или пароль'));
             }
           })
           .catch(next);
@@ -74,7 +77,7 @@ const createUser = (req, res, next) => {
           if (err.code === 11000) {
             next(new RequestError('email занят'));
           } else if (err.name === 'ValidationError') {
-            next(new BadRequestError('Incorrect data'));
+            next(new BadRequestError('Invalid email'));
           } else {
             next(err);
           }
@@ -85,7 +88,7 @@ const createUser = (req, res, next) => {
 
 const logout = (req, res) => {
   res.clearCookie('jwt');
-  return res.status(SUCSESS).send('Logged out');
+  return res.status(SUCSESS).send({ message: 'Вы успешно вышли' });
 };
 
 module.exports = {

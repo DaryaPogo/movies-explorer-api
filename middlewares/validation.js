@@ -34,28 +34,20 @@ const validationUpdateUser = celebrate({
       'string.min': 'Length must be greate than 2',
       'string.max': 'Length must be less than 30',
     }),
-    email: Joi.string().email(),
+    email: Joi.string().email().required().messages({
+      'any.required': 'Field is required',
+    }),
   }),
 });
 
 const validationCreateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(2).max(30)
+    country: Joi.string().required()
       .messages({
-        'string.min': 'Length must be greate than 2',
-        'string.max': 'Length must be less than 30',
         'any.required': 'Field is required',
       }),
-    director: Joi.string().required().min(2).max(30)
+    director: Joi.string().required()
       .messages({
-        'string.min': 'Length must be greate than 2',
-        'string.max': 'Length must be less than 30',
-        'any.required': 'Field is required',
-      }),
-    description: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.min': 'Length must be greate than 2',
-        'string.max': 'Length must be less than 30',
         'any.required': 'Field is required',
       }),
     duration: Joi.number().required()
@@ -63,7 +55,11 @@ const validationCreateMovie = celebrate({
         'any.required': 'Field is required',
         'number.base': 'must be a number',
       }),
-    year: Joi.number().required()
+    year: Joi.string().required()
+      .messages({
+        'any.required': 'Field is required',
+      }),
+    description: Joi.string().required()
       .messages({
         'any.required': 'Field is required',
       }),
@@ -73,19 +69,18 @@ const validationCreateMovie = celebrate({
     trailerLink: Joi.string().uri().required().messages({
       'any.required': 'Field is required',
     }),
-    nameRU: Joi.string().required().min(2).max(30)
+    nameRU: Joi.string().required()
       .messages({
-        'string.min': 'Length must be greate than 2',
-        'string.max': 'Length must be less than 30',
         'any.required': 'Field is required',
       }),
-    nameEN: Joi.string().required().min(2).max(30)
+    nameEN: Joi.string().required()
       .messages({
-        'string.min': 'Length must be greate than 2',
-        'string.max': 'Length must be less than 30',
         'any.required': 'Field is required',
       }),
     thumbnail: Joi.string().uri().required().messages({
+      'any.required': 'Field is required',
+    }),
+    movieId: Joi.number().required().messages({
       'any.required': 'Field is required',
     }),
   }),
@@ -93,7 +88,7 @@ const validationCreateMovie = celebrate({
 
 const validationDeleteMovie = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().hex().length(24),
+    id: Joi.string().hex().length(24),
   }),
 });
 
