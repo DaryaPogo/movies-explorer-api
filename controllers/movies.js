@@ -7,7 +7,7 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const SUCSESS = 200;
 
 const getMovies = (req, res, next) => {
-  Movie.findOne({ owner: req.user._id })
+  Movie.find({ owner: req.user._id })
     .then((movies) => {
       res.status(SUCSESS).send(movies);
     })
