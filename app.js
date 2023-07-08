@@ -20,6 +20,7 @@ app.use(
       'http://localhost:3000',
       'http://localhost:3001',
       'http://diplom.dashapogo.nomoredomains.monster',
+      'https://diplom.dashapogo.nomoredomains.monster',
       'https://api.nomoreparties.co/beatfilm-movies',
       'https://api.diplom.dashapogo.nomoredomains.monster',
     ],
