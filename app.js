@@ -14,11 +14,18 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://diplom.dashapogo.nomoredomains.monster',
-    'https://diplom.dashapogo.nomoredomains.monster', 'https://api.diplom.dashapogo.nomoredomains.monster'],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://diplom.dashapogo.nomoredomains.monster',
+      'https://api.nomoreparties.co/beatfilm-movies',
+      'https://api.diplom.dashapogo.nomoredomains.monster',
+    ],
+    credentials: true,
+  }),
+);
 
 app.use(bodyParser.json());
 app.use(cookiesParser());

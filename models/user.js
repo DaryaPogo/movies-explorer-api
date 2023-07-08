@@ -29,7 +29,6 @@ userSchema.methods.toJSON = function () {
   const data = this.toObject();
   delete data.password;
   delete data.__v;
-  delete data._id;
   return data;
 };
 
